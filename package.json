@@ -32,7 +32,8 @@
   },
   "homepage": "https://github.com/sdougbrown/flyd-router#readme",
   "peerDependencies": {
-    "flyd": ">=0.1.x <=0.2.x"
+    "flyd": ">=0.1.x <=0.2.x",
+    "loadash": ">=4.x.x <5.x.x"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
@@ -46,4 +47,3 @@
     "rimraf": "^2.5.4"
   }
 }
-
