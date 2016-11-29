@@ -1,0 +1,49 @@
+{
+  "name": "flyd-router",
+  "version": "0.0.0",
+  "description": "HTML5 History Streams",
+  "main": "lib/index.js",
+  "scripts": {
+    "compile": "rimraf lib/* && babel src -d lib",
+    "test": "eslint src/ && babel-node node_modules/ospec/bin/ospec",
+    "prepublish": "npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdougbrown/flyd-router"
+  },
+  "keywords": [
+    "flyd",
+    "streams",
+    "functional",
+    "reactive",
+    "modular",
+    "library",
+    "hashchange",
+    "popstate",
+    "pushstate",
+    "replacestate",
+    "router"
+  ],
+  "author": "Doug Brown <npm@douggo.com> (http://douggo.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sdougbrown/flyd-router/issues"
+  },
+  "homepage": "https://github.com/sdougbrown/flyd-router#readme",
+  "peerDependencies": {
+    "flyd": ">=0.1.x <=0.2.x"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.11.4",
+    "babel-eslint": "^7.0.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.9.0",
+    "eslint": "^3.7.1",
+    "flyd": "^0.2.2",
+    "ospec": "^1.1.0",
+    "rimraf": "^2.5.4"
+  }
+}
+
