@@ -24,10 +24,12 @@ export default function parse(query) {
   function parseEntry(raw) {
     const entry = raw.split('=');
     const key = decodeURIComponent(entry[0]);
-    const value = (entry.length > 1) ? parseValue(entry[1]): '';
+    const value = (entry.length > 1) ? parseValue(entry[1]) : '';
 
     walkLevels({
+      key,
       data,
+      value,
       counters,
       parentKey: key,
       levels: key.split(/\]\[?|\[/)
@@ -63,31 +65,31 @@ function parseValue(raw) {
   return value;
 }
 
-function walkLevels({ data, counters, parentKey, levels }) {
+function walkLevels({ data, value, counters, parentKey, levels }) {
   let cursor = data;
 
-  if (key.includes('[')) {
+  if (parentKey.includes('[')) {
     levels.pop();
   }
 
   levels.forEach((level, i) => {
-    const nextLevel = levels[parentKey+1];
+    const nextLevel = levels[parentKey + 1];
     const isNumber = nextLevel === '' || !isNaN(parseInt(nextLevel, 10));
     const isValue = i === levels.length - 1;
 
-    walkLevel({ cursor, counters, level, isNumber, isValue });
+    walkLevel({ i, value, cursor, counters, level, isNumber, isValue });
 
     cursor = cursor[level];
   });
 }
 
-function walkLevel({ cursor, counters, level, isNumber, isValue }) {
+function walkLevel({ i, value, cursor, counters, level, isNumber, isValue }) {
   if (level === '') {
-    const key = levels.slice(0, i).join();
+    const key = level.slice(0, i).join();
     if (isNil(counters[key])) {
       counters[key] = 0;
     }
-    level = counters[key]++;
+    level = counters[key] + 1;
   }
   if (isNil(cursor[level])) {
     cursor[level] = (isValue) ? value : (isNumber) ? [] : {};
